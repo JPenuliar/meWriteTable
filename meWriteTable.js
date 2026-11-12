@@ -54,12 +54,14 @@ define([
             } catch (e) {}
         });
 
-        var tableContainer = node.closest(".sn-table, [role='grid'], [role='table'], table");
-        var headerCell = tableContainer ? tableContainer.querySelector("th, [role='columnheader']") : null;
-        if (headerCell) {
-            triggerFullClick(headerCell);
+        // Click a safe, non-sortable target (the sheet grid background or this extension's container)
+        // instead of clicking a column header (th) which triggers Qlik sorting
+        var safeOutsideTarget = document.querySelector(".qv-panel-sheet, .qvt-sheet, .qv-object-meWriteTable");
+        if (safeOutsideTarget) {
+            triggerFullClick(safeOutsideTarget);
         }
     }
+
 
     function dismissOpenPopover(activeNode) {
         var escOptions = {
