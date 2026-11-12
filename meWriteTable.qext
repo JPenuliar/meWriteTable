@@ -1,0 +1,21 @@
+{
+    "name": "meWriteTable",
+    "description": "Bulk-populate and clear dropdown selections in Qlik Write Table (.sn-table-editable-selector) objects.",
+    "type": "visualization",
+    "version": "1.2.7",
+    "icon": "table",
+    "author": "jxp",
+    "homepage": "",
+    "keywords": "qlik-sense, visualization, write-table, bulk-edit, automation",
+    "license": "",
+    "bundle": {
+        "id": "me-extension-bundle",
+        "name": "ME extensions",
+        "url": "",
+        "description": "Custom visualization extensions for ME"
+    },
+    "repository": "",
+    "dependencies": {
+        "qlik-sense": ">=3.0.x"
+    }
+}
