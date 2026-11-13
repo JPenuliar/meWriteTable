@@ -29,6 +29,23 @@
     background-color: #ffffff;
     box-sizing: border-box;
     transition: opacity 0.2s ease, box-shadow 0.2s ease;
+    max-width: 100%;
+}
+
+.mewt-editor-card.mewt-width-autofit {
+    flex: 1 1 0;
+    min-width: 140px;
+}
+
+.mewt-editor-card.mewt-width-fixed .mewt-select,
+.mewt-editor-card.mewt-width-fixed .mewt-text-input,
+.mewt-editor-card.mewt-width-fixed .mewt-date-input,
+.mewt-editor-card.mewt-width-autofit .mewt-select,
+.mewt-editor-card.mewt-width-autofit .mewt-text-input,
+.mewt-editor-card.mewt-width-autofit .mewt-date-input {
+    flex: 1 1 auto;
+    min-width: 60px;
+    width: 100%;
 }
 
 .mewt-editor-label {
@@ -40,10 +57,11 @@
 }
 
 .mewt-control-row {
-    display: inline-flex;
+    display: flex;
     align-items: center;
     flex-wrap: wrap;
     gap: 6px;
+    width: 100%;
 }
 
 .mewt-edit-mode-locked .mewt-editor-card {
@@ -79,6 +97,7 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    flex-shrink: 0;
     transition: filter 0.15s ease;
 }
 
@@ -112,8 +131,8 @@
 .mewt-radio-pill input[type="radio"] { margin: 0; cursor: pointer; }
 
 /* Range Slider */
-.mewt-slider-wrap { display: inline-flex; align-items: center; gap: 8px; }
-.mewt-slider { width: 140px; cursor: pointer; }
+.mewt-slider-wrap { display: inline-flex; align-items: center; gap: 8px; flex: 1 1 auto; }
+.mewt-slider { width: 140px; flex: 1 1 auto; cursor: pointer; }
 .mewt-slider-badge { font-size: 12px; font-weight: 600; padding: 2px 8px; min-width: 44px; text-align: center; background-color: #f4f4f4; color: #222222; border: 1px solid #dddddd; }
 
 /* Numeric Stepper */
