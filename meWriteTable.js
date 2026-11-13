@@ -137,7 +137,7 @@ define(["qlik", "./properties", "css!./style.css"], function (qlik, properties) 
 
     function isCellEmpty(cell, targetType) {
         if (targetType === "dropdown") {
-            var txt = (cell.textContent || "").replace(/\u200b/g, "").trim();
+            var txt = (cell.textContent || "").replace(/​/g, "").trim();
             return !txt || txt === "-" || txt.toLowerCase() === "select";
         }
         return !(cell.value || "").trim();
@@ -250,9 +250,31 @@ define(["qlik", "./properties", "css!./style.css"], function (qlik, properties) 
         return false;
     }
 
+    function applyCardWidth(card, cfg, layout) {
+        var mode = cfg.widthMode || layout.globalWidthMode || "auto";
+        if (mode === "autofit") {
+            card.classList.add("mewt-width-autofit");
+        } else if (mode === "px") {
+            var pxVal = cfg.widthMode === "px"
+                ? (parseInt(cfg.widthPx, 10) || 220)
+                : (parseInt(layout.globalWidthPx, 10) || 220);
+            card.classList.add("mewt-width-fixed");
+            card.style.width = Math.max(60, pxVal) + "px";
+            card.style.flex = "0 0 auto";
+        } else if (mode === "pct") {
+            var pctVal = cfg.widthMode === "pct"
+                ? (parseFloat(cfg.widthPct) || 50)
+                : (parseFloat(layout.globalWidthPct) || 50);
+            var clampedPct = Math.max(5, Math.min(100, pctVal));
+            card.classList.add("mewt-width-fixed");
+            card.style.width = clampedPct + "%";
+            card.style.flex = "0 0 " + clampedPct + "%";
+        }
+    }
+
     return {
         initialProperties: {
-            version: 2.0
+            version: 2.1
         },
         definition: properties,
         support: {
@@ -403,6 +425,7 @@ define(["qlik", "./properties", "css!./style.css"], function (qlik, properties) 
 
                 var card = document.createElement("div");
                 card.className = "mewt-editor-card " + round + " " + border + " " + shadow;
+                applyCardWidth(card, cfg, layout);
 
                 if (cfg.label) {
                     var lbl = document.createElement("div");
