@@ -12,6 +12,13 @@ define([], function () {
         { value: "w3-white", label: "White" }
     ];
 
+    var widthModeOptions = [
+        { value: "auto", label: "Auto (Fit Content)" },
+        { value: "autofit", label: "Autofit (Stretch Equal)" },
+        { value: "px", label: "Fixed Pixels (px)" },
+        { value: "pct", label: "Percentage (%)" }
+    ];
+
     var editorItemDef = {
         label: {
             type: "string",
@@ -341,6 +348,32 @@ define([], function () {
             ],
             defaultValue: "empty"
         },
+        widthMode: {
+            type: "string",
+            component: "dropdown",
+            ref: "widthMode",
+            label: "Editor Width Mode",
+            options: [{ value: "", label: "Use Global Width Mode" }].concat(widthModeOptions),
+            defaultValue: ""
+        },
+        widthPx: {
+            type: "integer",
+            ref: "widthPx",
+            label: "Width in Pixels (px)",
+            defaultValue: 220,
+            min: 60,
+            max: 2000,
+            show: function (item) { return item.widthMode === "px"; }
+        },
+        widthPct: {
+            type: "number",
+            ref: "widthPct",
+            label: "Width in Percentage (%)",
+            defaultValue: 50,
+            min: 5,
+            max: 100,
+            show: function (item) { return item.widthMode === "pct"; }
+        },
         itemColor: {
             type: "string",
             component: "dropdown",
@@ -400,6 +433,7 @@ define([], function () {
                                 columnMode: "all",
                                 columnIndex: 1,
                                 rowScope: "empty",
+                                widthMode: "",
                                 itemColor: ""
                             }
                         ],
@@ -504,6 +538,32 @@ define([], function () {
                             { value: "column", label: "Stacked Vertically" }
                         ],
                         defaultValue: "row"
+                    },
+                    globalWidthMode: {
+                        type: "string",
+                        component: "dropdown",
+                        ref: "globalWidthMode",
+                        label: "Default Editor Width Mode",
+                        options: widthModeOptions,
+                        defaultValue: "auto"
+                    },
+                    globalWidthPx: {
+                        type: "integer",
+                        ref: "globalWidthPx",
+                        label: "Default Width in Pixels (px)",
+                        defaultValue: 220,
+                        min: 60,
+                        max: 2000,
+                        show: function (data) { return data.globalWidthMode === "px"; }
+                    },
+                    globalWidthPct: {
+                        type: "number",
+                        ref: "globalWidthPct",
+                        label: "Default Width in Percentage (%)",
+                        defaultValue: 50,
+                        min: 5,
+                        max: 100,
+                        show: function (data) { return data.globalWidthMode === "pct"; }
                     },
                     alignment: {
                         type: "string",
