@@ -1,8 +1,8 @@
 {
   "name": "meWriteTable",
-  "description": "Global bulk-editing toolbar for Qlik Write Tables supporting Dropdowns, Text/Number Inputs, Date Pickers, Star Ratings, Checkboxes, Radios, Sliders, Steppers, Multi-Select Pills, One-Click Stamps, and Colour Pickers.",
+  "description": "Global bulk-editing toolbar for Qlik Write Tables supporting Dropdowns, Text/Number Inputs, Date Pickers, Star Ratings, Checkboxes, Radios, Sliders, Steppers, Multi-Select Pills, One-Click Stamps, and Colour Pickers with flexible Editor Width controls.",
   "type": "visualization",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "icon": "table",
   "author": "meWriteTable",
   "homepage": "",
